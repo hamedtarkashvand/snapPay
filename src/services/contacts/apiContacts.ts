@@ -3,7 +3,7 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { SearchContactRequest, SearchContactResponse } from "./types";
 
 const createBaseQuery = (query:string)=>{
-    const normalizeQuery = query.toLocaleLowerCase().trim()
+    const normalizeQuery = query.trim()
     const isMobile = /^\d+$/.test(normalizeQuery);
     return {
         url: "/passenger",

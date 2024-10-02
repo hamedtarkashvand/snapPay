@@ -1,5 +1,7 @@
 import { FC } from "react";
 import { ContactInterface } from "../services/contacts/types";
+import ListItem from "./list/ListItem";
+import ListNotFound from "./list/ListNotFound";
 
 interface RecentSearchProps {
   recentSearch?: ContactInterface[];
@@ -7,15 +9,15 @@ interface RecentSearchProps {
 
 const RecentSearch: FC<RecentSearchProps> = ({ recentSearch }) => {
   return (
-    <div className="p-5  min-h-60 rounded-md shadow-lg border border-slate-200 bg-white">
+    <div className="p-5   rounded-md shadow-lg border border-slate-200 bg-white">
       {recentSearch?.length ? (
         <ul>
           {recentSearch.map((contact) => (
-            <li key={contact.id}>{contact.first_name}</li>
+            <ListItem key={contact.id} {...contact}  />
           ))}
         </ul>
       ) : (
-        <p>No recent searches</p>
+        <ListNotFound contentTest={"You haven't searched for a contact recently."} badgeText={"NotFound"} />
       )}
     </div>
   );

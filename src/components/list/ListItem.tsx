@@ -1,48 +1,49 @@
 import type { FC } from "react";
 import { ContactInterface } from "../../services/contacts/types";
+import { Link } from "react-router-dom";
+import Avatar from "../Avatar";
+import { useSelector } from "react-redux";
+import { TypeRootState } from "../../store";
+import Badge from "../Badge";
+import { IoCallOutline } from "react-icons/io5";
 
-interface ListItemProps extends ContactInterface {}
+interface ListItemProps extends ContactInterface {
+  style?: React.CSSProperties;
+}
 
 const ListItem: FC<ListItemProps> = ({
   first_name,
   last_name,
   phone,
   avatar,
+  style,
   id,
   createdAt,
 }) => {
+  const { resentIds } = useSelector(
+    (state: TypeRootState) => state.stateRecentContract
+  );
   return (
-    <li
-      id={`item${id}`}
-      className="pb-4 group/item hover:bg-slate-100 rounded-md p-3"
-    >
-      <div className="flex items-center space-x-4 ">
-        <div className="flex-shrink-0">
-          {avatar ? (
-            <img
-              className="w-16 h-16 rounded-full"
-              src={avatar}
-              alt={first_name}
-            />
-          ) : (
-            <div className="relative inline-flex items-center justify-center w-16 h-16 overflow-hidden bg-gray-100 rounded-full ">
-              <span className="font-medium text-gray-600 dark:text-gray-300">
-                {first_name.slice(0, 2).toUpperCase()}
-              </span>
-            </div>
-          )}
-        </div>
-        <div className="flex-1">
-          <p className="text-sm font-medium text-gray-900 truncate ">
-            {first_name}
-          </p>
-          <p className="text-sm text-gray-500 truncate ">{phone}</p>
-        </div>
-        <div className="inline-flex items-center text-sm font-semibold text-gray-300 ">
-          {phone}
+    <Link to={`details/${id}`} style={style} key={id}>
+      <div className="pb-4 group/item hover:bg-slate-100 rounded-md p-3">
+        <div className="flex items-center space-x-4 ">
+          <div className="flex-shrink-0">
+            <Avatar src={avatar} firstName={first_name} />
+          </div>
+          <div className="flex-1">
+            <p className="text-sm font-medium text-gray-900 truncate ">
+              {first_name}
+            </p>
+            <p className="text-sm text-gray-500 truncate ">{last_name}</p>
+          </div>
+          <div
+            className=" inline-flex items-center text-sm font-semibold "
+          >
+            <Badge icon={IoCallOutline} textContent={phone} isActive={resentIds.includes(id)} />
+          </div>
         </div>
       </div>
-    </li>
+    </Link>
   );
 };
 export default ListItem;

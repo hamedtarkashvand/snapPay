@@ -23,7 +23,7 @@
      total: number;
      criteria: object;
    };
-   item: ContactInterface[];
+   items: ContactInterface[];
  }
 
  export interface RootRequest  {
@@ -39,7 +39,9 @@
   
 
  export interface SearchContactRequest {
-    query:string
+    query:string,
+    limit?: number,
+    skip?: number
  }
 
  export interface SearchContactResponse extends RootResponse {
@@ -47,3 +49,4 @@
  }
 
 
+ export type SearchDetailsContactResponse = ContactInterface

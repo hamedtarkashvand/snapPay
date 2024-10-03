@@ -34,7 +34,7 @@ const Search: FC<SearchProps> = ({
   });
 
   return (
-    <div  id="InputSearch" className="">
+    <div ref={refInputSearch}  id="InputSearch" className="">
       <label className="relative block">
         <span className="sr-only">Search</span>
         <input
@@ -52,7 +52,7 @@ const Search: FC<SearchProps> = ({
         <span className="absolute inset-y-0 left-0 flex  items-center text-slate-300 peer-focus:text-blue-700 justify-center pl-2">
           <TbInputSearch className="text-lg" />
         </span>
-        <div ref={refInputSearch} className="absolute  top-[50px] left-0 right-0">
+        <div className="absolute z-10  top-[50px] left-0 right-0">
         {open &&
           value.trim().length === 0 &&
           renderRecentSearch &&

@@ -1,8 +1,10 @@
 import { fetchBaseQuery } from "../api";
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { SearchContactRequest, SearchContactResponse } from "./types";
+import { SearchContactRequest, SearchContactResponse, SearchDetailsContactResponse } from "./types";
 
-const createBaseQuery = (query:string)=>{
+type CreateBaseQueryType = SearchContactRequest
+const createBaseQuery = (params:CreateBaseQueryType)=>{
+    const {query, limit = 50,skip=0} = params
     const normalizeQuery = query.trim()
     const isMobile = /^\d+$/.test(normalizeQuery);
     return {
@@ -18,7 +20,8 @@ const createBaseQuery = (query:string)=>{
             },
           },
           sort: "createdAt DESC",
-          limit: 30,
+          limit,
+          skip,
         },
       };
 }
@@ -28,9 +31,9 @@ export const createContactService = createApi({
   baseQuery: fetchBaseQuery(),
   endpoints: (builder) => ({
     searchContact: builder.query<SearchContactResponse, SearchContactRequest>({
-      query: ({ query }) => createBaseQuery(query)
+      query: (query) => createBaseQuery(query)
     }),
-    contactDetail:builder.query<SearchContactResponse, SearchContactRequest>({
+    contactDetail:builder.query<SearchDetailsContactResponse, SearchContactRequest>({
         query:({query})=>({
             method:'GET',
             url:`/passenger/${query}`

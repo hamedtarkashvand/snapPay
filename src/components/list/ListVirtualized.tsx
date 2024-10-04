@@ -1,5 +1,4 @@
 import { CSSProperties, type FC } from "react";
-import { ContactInterface } from "../../services/contacts/types";
 import ListItem from "./ListItem";
 
 import {
@@ -8,6 +7,7 @@ import {
   List as ListVirtualizedTow,
 } from "react-virtualized";
 import InfiniteLoader from "react-virtualized/dist/commonjs/InfiniteLoader";
+import { ContactInterface } from "../../type";
 
 interface ListProps {
   contacts: ContactInterface[];

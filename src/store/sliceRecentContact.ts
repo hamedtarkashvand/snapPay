@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ContactInterface } from "../services/contacts/types";
+import { ContactInterface } from "../type";
 
 type RecentSearchActionType = ContactInterface;
 type InitialStateType = {

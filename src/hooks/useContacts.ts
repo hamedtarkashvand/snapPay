@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSearchContactQuery } from "../services/contacts/apiContacts";
 import useDebounce from "./useDebounce";
-import { ContactInterface } from "../services/contacts/types";
 import useDebouncedCallback from "./useDebouncedCallback";
+import { ContactInterface } from "../type";
 
 interface UseContactsProps {
   initialQuery?: string;
@@ -19,11 +19,11 @@ const useContacts = ({ initialQuery = "" }: UseContactsProps) => {
     setAllContacts([]); 
     setSkip(0);
   }
-  const handleRefreshContactList  = useDebouncedCallback(refreshContactList,1000)
+  const delayedRefreshContacts  = useDebouncedCallback(refreshContactList,1000)
   
   const handleSearch = (newQuery: string) => {
     setSearchTerm(newQuery);
-    handleRefreshContactList()
+    delayedRefreshContacts()
   };
 
   const handlerFetchMoreContacts = async (): Promise<any> => {

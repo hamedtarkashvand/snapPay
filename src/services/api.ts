@@ -19,7 +19,7 @@ export const get = async <TResponse>(
   }
 }
 
-//TODO: create other method similar delete , options
+//TODO: create other method similar delete , options , post
 
 export const fetchBaseQuery =
   (): BaseQueryFn<{

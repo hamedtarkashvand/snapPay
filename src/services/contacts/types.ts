@@ -1,22 +1,6 @@
- export interface ContactInterface {
-    first_name: string,
-    last_name: string,
-    email: string,
-    gender: string,
-    phone: string,
-    note: string,
-    telegram: string,
-    avatar: string,
-    company: string,
-    address: null,
-    createdAt: number,
-    updatedAt: number,
-    id: number
- }
- 
+import { ContactInterface } from "../../type";
 
-
- export interface RootResponse {
+export interface RootResponse {
    meta: {
      skipped: number;
      limit: number;

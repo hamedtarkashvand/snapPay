@@ -1,5 +1,4 @@
 import Search from "../components/input/InputSearch";
-
 import RecentSearch from "../components/RecentSearch";
 import ListVirtualized from "../components/list/ListVirtualized";
 import { useSelector } from "react-redux";

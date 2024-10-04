@@ -1,11 +1,11 @@
 import type { FC } from "react";
-import { ContactInterface } from "../../services/contacts/types";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
 import { useSelector } from "react-redux";
 import { TypeRootState } from "../../store";
 import Badge from "../Badge";
 import { IoCallOutline } from "react-icons/io5";
+import { ContactInterface } from "../../type";
 
 interface ListItemProps extends ContactInterface {
   style?: React.CSSProperties;

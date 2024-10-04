@@ -32,7 +32,7 @@ export const createContactService = createApi({
   endpoints: (builder) => ({
     searchContact: builder.query<SearchContactResponse, SearchContactRequest>({
       query: (query) => createBaseQuery(query),
-      keepUnusedDataFor:0
+      // keepUnusedDataFor:0
     }),
     contactDetail:builder.query<SearchDetailsContactResponse, SearchDetailsContactRequest>({
         query:({id})=>({

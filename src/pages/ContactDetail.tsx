@@ -31,10 +31,12 @@ const ContactDetail = () => {
     );
   }
 
-  if (isError) {
+  if (isError && !data) {
     return (
       <div className="flex items-center justify-center h-full w-full">
-        <Alert badgeText="NotFound" label="" />
+        <Alert badgeText="NotFound" label="An error has occurred" clickHandler={()=>{
+          navigate(-1);
+        }}/>
       </div>
     );
   }

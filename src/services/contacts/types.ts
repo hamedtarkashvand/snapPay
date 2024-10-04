@@ -39,14 +39,17 @@
   
 
  export interface SearchContactRequest {
-    query:string,
-    limit?: number,
-    skip?: number
+   searchTerm: string;
+   limit?: number;
+   skip?: number;
  }
 
  export interface SearchContactResponse extends RootResponse {
     items:ContactInterface[]
  }
+  export interface SearchDetailsContactRequest {
+    id:string | number
+ }
 
 
- export type SearchDetailsContactResponse = ContactInterface
+ export type SearchDetailsContactResponse = ContactInterface 

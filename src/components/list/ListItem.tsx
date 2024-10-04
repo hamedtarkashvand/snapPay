@@ -18,7 +18,6 @@ const ListItem: FC<ListItemProps> = ({
   avatar,
   style,
   id,
-  createdAt,
 }) => {
   const { resentIds } = useSelector(
     (state: TypeRootState) => state.stateRecentContract

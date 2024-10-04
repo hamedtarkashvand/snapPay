@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { ContactInterface } from "../services/contacts/types";
 import ListItem from "./list/ListItem";
-import ListNotFound from "./list/ListNotFound";
+import ListNotFound from "./list/ItemNotFound";
 
 interface RecentSearchProps {
   recentSearch?: ContactInterface[];

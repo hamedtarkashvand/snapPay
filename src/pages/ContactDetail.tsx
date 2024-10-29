@@ -4,14 +4,15 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Avatar from "../components/Avatar";
 import Alert from "../components/Alert";
 import Loading from "../components/Loading";
-import { addRecentSearch } from "../store/sliceRecentContact";
+import { saveRecentSearches } from "../store/sliceRecentContact";
 import { useDispatch } from "react-redux";
 import { ContactInterface } from "../type";
+import { AppDispatch } from "../store";
 
 const ContactDetail = () => {
   const { id = "" } = useParams();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   if (!id) navigate(-1);
 
@@ -19,7 +20,7 @@ const ContactDetail = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(addRecentSearch(data));
+      dispatch(saveRecentSearches(data));
     }
   }, [id, isSuccess, dispatch, data]);
 
@@ -34,9 +35,13 @@ const ContactDetail = () => {
   if (isError && !data) {
     return (
       <div className="flex items-center justify-center h-full w-full">
-        <Alert badgeText="NotFound" label="An error has occurred" clickHandler={()=>{
-          navigate(-1);
-        }}/>
+        <Alert
+          badgeText="NotFound"
+          label="An error has occurred"
+          clickHandler={() => {
+            navigate(-1);
+          }}
+        />
       </div>
     );
   }
